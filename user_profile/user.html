@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Your_profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+
+      <input type="checkbox" id="check">
+      <header>
+
+          <label for="check">
+            <i class="fa fa-bars" id="sidebar_btn"></i>
+          </label>
+
+          <div class="left_area">
+            <h3>Spatio<span>Crowd</span></h3>
+          </div>
+
+        <div class="right_area">
+          <a href="index.html" class="logout_btn">Αποσύνδεση</a>
+        </div>
+
+      </header>
+  
+      <div class="sidebar">
+        <center>
+        <img src="logo.png" class="profile_image" alt="">
+        </center>
+        <a class="home" href="user.html"><i class="fa fa-desktop"></i><span>Αρχική</span></a>
+        <a href="#"><i class="fa fa-cogs"></i><span>Ρυθμίσεις</span></a>
+        
+        <!--Button Popup Upload-->
+        
+        <button class="open-button" onclick="openForm()"><i class="fa fa-file"></i>Ανέβασμα Αρχείου</button>
+        <div class="form-popup" id="UploadForm">
+          <form action="/action_page.php" class="form-container">
+            <h1>Ανέβασμα Αρχείου</h1>
+
+            <label for="email"><b>Επιλογή αρχείου:</b></label>
+            <input type="file" name="UploadFile" required>
+
+            <label for="psw"><b>Κωδικός Πρόσβασης</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit" class="btn">Μεταφόρτωση&excl;</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Ακύρωση</button>
+          </form>
+        </div>
+      </div>
+    <div class="content"></div>
+
+    <script>
+      function openForm() {
+      document.getElementById("UploadForm").style.display = "block";
+     }
+
+      function closeForm() {
+      document.getElementById("UploadForm").style.display = "none";
+      } 
+    </script>
+ </body>
+</html>
+
