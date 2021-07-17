@@ -10,25 +10,48 @@
             <div class="card">
                 <div class="face">
                     <h3>Welcome!</h3>
+                    <form name="f1" action = "authentication.php" onsubmit = "return validation()" method = "POST">
                     <!--<h6>Let's log in</h6>-->
-                    <div class="login-content">
-                        <div style="text-align: center;">
-                            <h5>Username</h5>
-                            <input name="name" type="text" placeholder="username">
-                            <h5>Password</h5>
-                            <input name="password" type="password" placeholder="password">
-                            <button type="button">log in </button>
+                        <div class="login-content">
+                            <div style="text-align: center;">
+                                <h5>Username</h5>
+                                <input name="user" type="text" id ="user" placeholder="username">
+                                <h5>Password</h5>
+                                <input name="pass" type="password" id ="pass" placeholder="password">
+                                <input type="submit">log in </input>
+                            </div>
                         </div>
-                    </div>
+                    </form> 
 
                     <div class="signup-content">
                         <a href="signupnew.html">No account? Sign up!</a>   
                     </div>
     
-
                 </div>
             </div>
-        </section>   
+        </section>
+        <script>  
+            function validation()  
+            {  
+                var id=document.f1.user.value;  
+                var ps=document.f1.pass.value;  
+                if(id.length=="" && ps.length=="") {  
+                    alert("User Name and Password fields are empty");  
+                    return false;  
+                }  
+                else  
+                {  
+                    if(id.length=="") {  
+                        alert("User Name is empty");  
+                        return false;  
+                    }   
+                    if (ps.length=="") {  
+                    alert("Password field is empty");  
+                    return false;  
+                    }  
+                }                             
+            }  
+        </script>     
     </body>
      
 </html>
