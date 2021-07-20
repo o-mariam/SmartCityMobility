@@ -6,6 +6,7 @@
     </head>
 
     <body>
+        <form action="connsingup.php" method="POST">
         <section>
             <div class="card">
                 <div class="face">
@@ -14,12 +15,12 @@
                     <div class="signup-content">
                         <div style="text-align: center;">
                             <h5>Username</h5>
-                            <input name="name" type="text" placeholder="username">
+                            <input name="username" type="text" placeholder="username">
                             <h5>Password</h5>
                             <input name="password" type="password" placeholder="password">
                             <h5>Email</h5>
                             <input name="email" type="text" placeholder="email">
-                            <button type="button">Sign up </button>
+                            <input type="submit" value="Sing up" name="submit" >  
                         </div>
                     </div>
 
@@ -30,7 +31,8 @@
 
                 </div>
             </div>
-        </section>   
+        </section>
+        </form>   
     </body>
      
 </html>
