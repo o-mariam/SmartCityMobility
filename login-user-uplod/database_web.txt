@@ -1,0 +1,52 @@
+
+=================================
+create table entries(
+id INT auto_increment,
+user_id varchar(50),
+startedDateTime Date default current_timestamp,
+ wait varchar(50), 
+ serverIPAddress varchar(50) , 
+ method varchar(50), 
+ url varchar(50), 
+ status varchar(50), 
+ statusText varchar(50), 
+ isp varchar(50), 
+ latitude varchar(50), 
+ longitude varchar(50), 
+ user_ip varchar(50), 
+ content_type varchar(50), 
+ cache_control varchar(50),
+ pragma varchar(50),
+ expires varchar(50),
+ age varchar(50),
+ last_modified date,
+ host varchar(50),
+ req_content_type varchar(50),
+ req_cache_control varchar(50),
+ req_pragma varchar(50),
+ req_expires varchar(50),
+req_age varchar(50),
+req_last_modified varchar(50),
+req_host varchar(50),
+user_lat varchar(50),
+user_long varchar(50),
+primary key (id),
+FOREIGN KEY (user_id) REFERENCES accounts(username)
+on update cascade on delete cascade
+);
+======================================================
+
+create table accounts(
+id int(11) not null // θα το δουμε αυτο...
+username varchar(50) not null,
+password varchar(255) not null,
+email varchar(100) not null,
+number_of_records int(11) default 0,
+last_upload timestamp not null degault current_timestamp
+primary key (username)
+);
+
+====================================================
+
+
+
