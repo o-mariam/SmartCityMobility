@@ -1,0 +1,95 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.ttl_graph_box{
+    position: fixed;
+	transform: translate(21%, -102%);
+    height: 90%;
+    width: 80%;
+    float: left;
+    background-color: rgb(165 164 195 / 73%);
+    font-family: "Archivo", sans-serif;
+}
+
+	.graph1_box{
+		position: relative;
+		width: 30%;
+		height: 100%;
+		float: left;
+	}
+	
+		.radar{
+			position: relative;
+			width: 80%;
+			height: 80%;
+			margin: 10%;
+			float: left;
+		}
+
+		.cb_titles{
+			font-size: 20px;
+			margin-left: 20%;
+			margin-bottom: 5px;
+			margin-top: 10px;
+		}
+
+		
+		.selecte_all{
+			transform: translate(6%, 1655%);
+			position: absolute;			
+			
+
+		}
+	
+		.content_types{
+			position: absolute;
+			bottom : 10px;
+			left: 10px;
+			height:50%;
+			width: 100%;
+			overflow: auto;
+			float:left;
+		}
+
+
+
+
+
+		.isp {
+			transform:translate(89%, -33%);
+
+
+		}
+
+
+		.radar_cb .applyfilters{
+			background-color: purple;
+			color: white;
+			padding: 16px 20px;
+			border: none;
+			cursor: pointer;
+			transform: translate(292%, -414%);
+
+
+		}
+
+		
+		  
+
+	.graph2_box{
+		position: relative;
+		width: 70%;
+		height: 60%;
+		float: left;
+	}
+		
+		.ttl_chart{
+			position: relative;
+			width: 60%;
+			margin-left: 27%;
+			margin-right: 5%;
+			margin-top: 3%;
+			float: left;
+		}

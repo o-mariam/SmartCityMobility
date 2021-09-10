@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Home Page</title>
+		<link href="dash.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+
+
+
+
+	<body class="loggedin">
+    <input type="checkbox" id="check">
+    <header>
+        
+      <label for="check" >
+        <i class="fa fa-bars" id="sidebar_btn"></i>
+      </label> 
+
+      <div class="left_area">
+        <h3>WebSite<span>Title</span></h3>
+      </div>
+
+      <div class="right_area">
+        <a href="logout.php" class="logout_btn"> <i class="fas fa-sign-out-alt" ></i> Logout</a>
+      </div>
+
+    </header>
+    
+    <div class="sidebar">
+      <center>
+        <img src="logo.png" class="profile_image" alt="">
+      </center>
+
+
+      
+      <!---Button PROFILE--->
+
+      <a href="analytics.php">
+        <button class="openbbutton"  ><i class="fa fa-line-chart" aria-hidden="true"></i>Analytics</button>
+      </a>
+
+      <a href="adminmap.php">
+        <button class="openbutton" href="adminmap.php"><i class="fa fa-map" aria-hidden="true"></i>Map of IPs</button>
+      </a>
+
+      <a href="adminheaders.php">
+        <button class="open-button" href="adminheaders.php" ><i class="fa fa-file" aria-hidden="true"></i>HTTP Files</button>
+      </a>   
+
+   
+
+    </div>
+
+
+
+
+
+
+
+
+
+        <div class="content-wrapper"  id="analytics">
+                <div class="overview-boxes">
+                    <div class="box">
+                    <div class="right-side">
+                        
+                        <div class="box-topic">No. Users</div>
+                        <div class="number" id="no_users">                            
+                            <script>
+                                        $.ajax({ 
+                                        url: "user_chart.php",
+                                        type: "GET",  
+                                        success: function(data) { 
+                                            document.getElementById("no_users").innerHTML = data;
+                                        } 
+                                    }); 
+                                </script>
+                        </div>
+                        <div class="indicator">
+                        </div>
+                    </div>
+                    <i class="fas fa-users" id="icon"></i>
+                    </div>
+                    <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Unique Domains</div>
+                        <div class="number" id="no_domains">
+                        <script>
+                                    $.ajax({ 
+                                    url: "url_chart.php",
+                                    type: "GET",  
+                                    success: function(data) { 
+                                        document.getElementById("no_domains").innerHTML = data;
+                                    } 
+                                }); 
+                                </script>
+                        </div>
+                        <div class="indicator">
+                        </div>
+                    </div>
+                    <i class="fas fa-globe" id="icon"></i>
+                    </div>
+                    <div class="box">
+                    <div class="right-side">
+                        <div class="box-topic">Unique ISP</div>
+                        <div class="number" id="no_isp">
+                            <script>
+                                    $.ajax({ 
+                                        url: "isp_chart.php",
+                                        type: "GET",  
+                                        success: function(data) { 
+                                            document.getElementById("no_isp").innerHTML = data;
+                                        } 
+                                    }); 
+                                </script>
+                        </div>
+                        <div class="indicator">
+                        </div>
+                    </div>
+                    <i class="fas fa-broadcast-tower" id="icon"></i>
+                    </div>
+                </div>
+
+
+                <div class="chart_box">
+
+                        
+                        <div class="chart_hbox1">
+                            <div class="pie_chart_container1">
+                                    <canvas id="method_chart"></canvas>
+                                </div>
+                        </div>
+
+                        <div class="chart_hbox3">
+                            <div class="pie_chart_container2">
+                                    <canvas id="status_chart"></canvas>
+                                </div>
+                        </div>
+                        
+
+                        
+                            <div class="chart_hbox2">
+                                <div class="bar_chart_container">
+                                    <canvas id="avg_chart" height=230></canvas>
+                                </div>
+                            </div>
+                        
+                </div>
+
+
+
+            </div>
+       
+         
+
+
+    
+  
+
+
+    
+		<!-- <div class="content">
+			<p>Welcome back</p>
+		</div> -->
+
+
+
+        <script type="text/javascript">
+                var method_data = [];
+                //δεδομένα για πίτα μεθόδων και δημιουργία
+                $.ajax({ 
+                    url: "method_chart.php",
+                    type: "GET", 
+                    success: function(data) { 
+                        method_data = data;
+                        method_pie_maker();
+                    } 
+                });
+                    
+                function method_pie_maker(){
+                    var ctx = document.getElementById("method_chart").getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ["GET", "POST", "PUT", "HEAD", "DELETE", "PATCH", "OPTIONS"],
+                            datasets: [{
+                                backgroundColor: [
+                                    "#2ecc71",
+                                    "#3498db",
+                                    "#95a5a6",
+                                    "#9b59b6",
+                                    "#f1c40f",
+                                    "#e74c3c",
+                                    "#34495e"
+                                ],
+                                data: method_data
+                            }]
+                            },
+                            options: {
+                                legend: { 
+                                    display : true,
+                                    position : 'bottom',
+                                    labels: {
+                                        fontSize :8,
+                                        fontFamily: "'Archivo', sans-serif"
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Number of Entries per Request Method',
+                                    fontFamily: "'Archivo', sans-serif"
+                                }
+                            }
+                        });
+                    }
+            </script>
+
+            <script type="text/javascript">
+                    var status_data = [];
+                    //δεδομένα για πίτα status και δημιουργία graph
+                    $.ajax({ 
+                        url: "status_chart.php",
+                        type: "POST",
+                        success: function(data) { 
+                            status_data = data;
+                            status_pie_maker();
+                        } 
+                    });
+
+                    function status_pie_maker(){
+                        var ctx = document.getElementById("status_chart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ["1xx informational", "2xx success", "3xx redirection", "4xx client errors", "5xx server errors"],
+                                datasets: [{
+                                backgroundColor: [
+                                    "#2ecc71",
+                                    "#3498db",
+                                    "#95a5a6",
+                                    "#9b59b6",
+                                    "#f1c40f",
+                                ],
+                                data: status_data
+                                }]
+                            },
+                            options : {
+                                legend:{
+                                    display : true,
+                                    position : 'bottom',
+                                    labels: {
+                                        fontSize :10,
+                                        fontFamily: "'Archivo', sans-serif"
+                                    }
+                                    
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Number of Entries per Response Status',
+                                    fontFamily: "'Archivo', sans-serif"
+                                }
+                            }
+                        });
+                    }
+            </script>
+            <script type="text/javascript">
+                    var graph_labels = [];
+                    var graph_data = [];
+
+                    $.ajax({ 
+                        url: "get_ct_labels.php",
+                        type: "POST",
+                        success: function(data) { 
+                            graph_labels = data;//επιστρέφει όλα τα content types για δημιουργία labels γραφήματος
+                            //με επιτυχία πάρε με ajax τα δεδομένα 
+                            $.ajax({ 
+                                url: "fill_ct_graph.php",
+                                type: "POST",
+                                success: function(data) { 
+                                    graph_data = data;
+                                    //ζωγράφισε
+                                    ct_graph_maker();
+                                } 
+                            });
+                        } 
+                    });
+
+                    function ct_graph_maker(){
+                        var ctx = document.getElementById("avg_chart").getContext('2d');
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: graph_labels,
+                                datasets: [{
+                                    data: graph_data,
+                                    backgroundColor: "#F08080",
+                                }]
+                            },
+                            options :{
+                                indexAxis: 'y',
+                                // Elements options apply to all of the options unless overridden in a dataset
+                                // In this case, we are setting the border of each horizontal bar to be 2px wide
+                                elements: {
+                                bar: {
+                                    borderWidth: 2,
+                                }
+                                },
+                                responsive: true,
+                                plugins: {
+                                legend: {
+                                    position: 'right',
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Average Object Age per Content Type(minutes)',
+                                    fontFamily: "'Archivo', sans-serif"
+                                }    
+                            }
+                        }
+                    });
+                    } 
+            </script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <scrip type="text/javascript" src="test.js"></script>
+    
+
+  </body>
+</html>
