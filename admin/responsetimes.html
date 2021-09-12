@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Home Page</title>
+		<link href="styles.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+
+
+
+
+	<body class="loggedin">
+    <input type="checkbox" id="check">
+    <header>
+        
+      <label for="check" >
+        <i class="fa fa-bars" id="sidebar_btn"></i>
+      </label> 
+
+      <div class="left_area">
+        <h3>WebSite<span>Title</span></h3>
+      </div>
+
+      <div class="right_area">
+        <a href="logout.php" class="logout_btn"> <i class="fas fa-sign-out-alt" ></i> Logout</a>
+      </div>
+
+    </header>
+    
+    <div class="sidebar">
+      <center>
+        <img src="logo.png" class="profile_image" alt="">
+      </center>
+
+
+      
+      <!---Button PROFILE--->
+
+      <a href="analytics.html">
+        <button class="openbbutton"  ><i class="fa fa-line-chart" aria-hidden="true"></i> Analytics</button>
+      </a>
+
+      <a href="map.html">
+        <button class="openbutton" href="map.html"><i class="fa fa-map" aria-hidden="true"></i> Map of IPs</button>
+      </a>
+
+      <a href="adminheaders.php">
+        <button class="open-button" href="adminheaders.php" ><i class="fa fa-file" aria-hidden="true"></i> HTTP Files</button>
+      </a>   
+      
+      <a href="responsetimes.html">
+        <button class="openb-button" href="responsetimes.html"><i class="far fa-clock" aria-hidden="true"></i> Response Times</button>
+      </a>
+
+
+   
+
+    </div>
+
+
+    <div class="purple" > 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <div class="about">
+    <div id="chart_container">
+        <canvas id="trChart"></canvas>
+    </div>
+    <button id="submit" type="button" class="submitvalues">Submit Values</button>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- CHART VALUES -->
+
+<script>
+    // === include 'setup' then 'config' above ===
+    const labels = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+        label: 'Response Times',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        spanGaps: true,
+        data: [0,10,11,,14,15,21,22,23,24],
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+        };
+  
+    var trChart = new Chart(
+      document.getElementById('trChart'),
+      config
+    );
+  </script>
+</div>
+
+<!-- CONTENT TYPE CHECKBOXES -->
+
+<div class="about">
+
+    <!-- (DE)SELECT THE CHECKBOXES  -->
+
+    <script type="text/javascript">  
+        function selectType(){  
+            var ele=document.getElementsByName('content_type');  
+            for(var i=0; i<ele.length; i++){  
+                if(ele[i].type=='checkbox')  
+                    ele[i].checked=true;  
+            }  
+        }  
+        function deSelectType(){  
+            var ele=document.getElementsByName('content_type');  
+            for(var i=0; i<ele.length; i++){  
+                if(ele[i].type=='checkbox')  
+                    ele[i].checked=false;  
+                
+            }  
+        }
+    </script> 
+
+    <!-- CHECKBOXES -->
+
+    <h2>Content Type</h2>
+    <script>
+        var content_type = [];
+        //CREATE DYNAMIC CHECKBOXES, BASED ON THE GIVEN DATA
+        $.ajax({ 
+            url: "getct.php",
+            type: "POST",
+            success: function(data) { 
+                content_type = data;
+                for (var value of content_type) {
+                    $('.content_type')
+                    .append(`<input type="checkbox" id="${value}" value="${value}">`)
+                    .append(`<label for="${value}">${value}</label></div>`)
+                    .append(`<br>`);
+                }
+            } 
+        });
+    </script>
+
+    <div class="move-me">
+        <input type="button" onclick='selectType()' value="Select All"/>  
+        <input type="button" onclick='deSelectType()' value="Deselect All"/>
+    </div>
+</div> 
+
+<!-- HTTP METHOD CHECKBOXES -->
+
+<div class="about">
+
+    <!-- (DE)SELECT THE CHECKBOXES  -->
+
+    <script type="text/javascript">  
+        function selectMethod(){  
+            var ele=document.getElementsByName('http_method');  
+            for(var i=0; i<ele.length; i++){  
+                if(ele[i].type=='checkbox')  
+                    ele[i].checked=true;  
+            }  
+        }  
+        function deSelectMethod(){  
+            var ele=document.getElementsByName('http_method');  
+            for(var i=0; i<ele.length; i++){  
+                if(ele[i].type=='checkbox')  
+                    ele[i].checked=false;  
+                
+            }  
+        }
+    </script>
+
+    <!-- CHECKBOXES -->
+
+    <h2>HTTP Method</h2>
+    <label class="rtcontainer">GET
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">HEAD
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">POST
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">PUT
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">DELETE
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">CONNECT
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">OPTIONS
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">TRACE
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">PATCH
+        <input type="checkbox" name="http_method">
+        <span class="checkmark"></span>
+    </label>
+
+    <div class="move-me">
+        <input type="button" onclick='selectMethod()' value="Select All"/>  
+        <input type="button" onclick='deSelectMethod()' value="Deselect All"/>
+    </div>
+</div>
+
+<!-- DAY OF THE WEEK CHECKBOXES -->
+
+<div class="about">
+
+    <!-- (DE)SELECT THE CHECKBOXES  -->
+
+    <script type="text/javascript">  
+        function selectDay(){  
+            var ele=document.getElementsByName('day_of_the_week');  
+            for(var i=0; i<ele.length; i++){  
+                if(ele[i].type=='checkbox')  
+                    ele[i].checked=true;  
+            }  
+        }  
+        function deSelectDay(){  
+            var ele=document.getElementsByName('day_of_the_week');  
+            for(var i=0; i<ele.length; i++){  
+                if(ele[i].type=='checkbox')  
+                    ele[i].checked=false;  
+                
+            }  
+        }
+    </script>
+
+    <!-- CHECKBOXES -->
+
+    <h2>Day of the Week</h2>
+    <label class="rtcontainer">Monday
+        <input type="checkbox" name="day_of_the_week">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">Tuesday
+        <input type="checkbox" name="day_of_the_week">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">Wednesday
+        <input type="checkbox" name="day_of_the_week">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">Thrusday
+        <input type="checkbox" name="day_of_the_week">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">Friday
+        <input type="checkbox" name="day_of_the_week">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">Saturday
+        <input type="checkbox" name="day_of_the_week">
+        <span class="checkmark"></span>
+    </label>
+
+    <label class="rtcontainer">Sunday
+        <input type="checkbox" name="day_of_the_week">
+        <span class="checkmark"></span>
+    </label>
+
+    <div class="move-me">
+        <input type="button" onclick='selectDay()' value="Select All"/>  
+        <input type="button" onclick='deSelectDay()' value="Deselect All"/>
+    </div>
+</div>
+
+<!-- TELEPHONE PROVIDER CHECKBOXES -->
+
+<div class="about">
+
+    <!-- (DE)SELECT THE CHECKBOXES  -->
+
+    <script type="text/javascript">  
+        function selectProvider(){  
+            var ele=document.getElementsByName('telephone_provider');  
+            for(var i=0; i<ele.length; i++){  
+                if(ele[i].type=='checkbox')  
+                    ele[i].checked=true;  
+            }  
+        }  
+        function deSelectProvider(){  
+            var ele=document.getElementsByName('telephone_provider');  
+            for(var i=0; i<ele.length; i++){  
+                if(ele[i].type=='checkbox')  
+                    ele[i].checked=false;  
+                
+            }  
+        }
+    </script>
+
+    <!-- CHECKBOXES -->
+
+    <h2>Provider</h2>
+    <script>
+        var isp = [];
+        //CREATE DYNAMIC CHECKBOXES, BASED ON THE GIVEN DATA
+        $.ajax({ 
+            url: "getisp.php",
+            type: "POST",
+            success: function(data) { 
+                isp = data;
+                for (var value of isp) {
+                    $('.telephone_provider')
+                    .append(`<input type="checkbox" id="${value}" value="${value}">`)
+                    .append(`<label for="${value}">${value}</label></div>`)
+                    .append(`<br>`);
+                }
+            } 
+        });
+    </script>
+
+    <div class="move-me">
+        <input type="button" onclick='selectProvider()' value="Select All"/>  
+        <input type="button" onclick='deSelectProvider()' value="Deselect All"/>
+    </div>
+</div>
+
+</div>
+
+<!-- RESPONSE TIME CHART -->
+
+<script>
+    var content_type = [];
+    var http_method = [];
+    var startedDateTime = [];
+    var telephone_provider = [];
+    var myarr = [];
+
+    var myChart;
+
+    //AFTER SUBMIT VALUES IT CREATES THE CHART
+    createGraphs();
+
+    function createGraphs(){
+        //έλεγχος για το ποια cb είναι checked και επιστροφή το value τους σε πίνακες
+        //οι πίνακες με ajax σε sql για την εκτέλεση της εντολής με απαραίτητα where
+        var ct_boxes = document.querySelectorAll('.content_type > input[type=checkbox]:checked');
+        var method_boxes = document.querySelectorAll('.http_method > input[type=checkbox]:checked');
+        var date_boxes = document.querySelectorAll('.day_of_the_week > input[type=checkbox]:checked');
+        var isp_boxes = document.querySelectorAll('.telephone_provider > input[type=checkbox]:checked');
+
+        for(var i=0; i<ct_boxes.length; i++){
+            content_type.push(ct_boxes[i].value);
+        }
+        for(var i=0; i<method_boxes.length; i++){
+            http_method.push(method_boxes[i].value);
+        }
+        for(var i=0; i<date_boxes.length; i++){
+            day_of_the_week.push(date_boxes[i].value);
+        }
+        for(var i=0; i<isp_boxes.length; i++){
+            telephone_provider.push(isp_boxes[i].value);
+        }
+
+        content_type = JSON.stringify(content_type).replace(/\[/g, "(").replace(/\]/g, ")");
+        http_method = JSON.stringify(http_method).replace(/\[/g, "(").replace(/\]/g, ")");
+        day_of_the_week = JSON.stringify(day_of_the_week).replace(/\[/g, "(").replace(/\]/g, ")");
+        telephone_provider = JSON.stringify(isp).replace(/\[/g, "(").replace(/\]/g, ")");
+
+        
+                    $.ajax({ 
+                            url: "tr_average.php",
+                            type: "POST",
+                            data: {
+                                content_type : content_type,
+                                methods : http_method,
+                                days : day_of_the_week,
+                                isp : telephone_provider
+                            },
+                            success: function(data) { 
+                            myarr = data;
+
+                                var i;
+                                var j;
+
+                                //αντοιστοίχηση δεδομένων με ώρες για γράφημα
+                                for(i=0; i <= 24; i++){
+                                    for(j=0; j < myarr.length; j++){
+                                        if(myarr[j][0] == chart_labels[i]){
+                                            chart_data[i] = myarr[j][1];
+                                            break;
+                                        }else{
+                                            chart_data[i] = 0;
+                                        }
+                                    }
+                                    
+                                }
+
+                                //άδεισμα σε περίπτωση που ο χρήστης θέλει κι άλλο γράφημα
+                                content_type = [];
+                                http_method = [];
+                                day_of_the_week = [];
+                                telephone_provider = [];
+
+                                var ctx = document.getElementById("trChart").getContext('2d');
+                                myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: chart_labels,
+                                    datasets: [{
+                                        data: chart_data,
+                                        backgroundColor: "#F08080",
+                                    }]
+                                    },
+                                    options : {
+                                        legend:{
+                                            display : false,                    
+                                        },
+                                        title: {
+                                            display: true,
+                                            text: 'Average Request Wait Time per Hour',
+                                            fontFamily: "'Archivo', sans-serif"
+                                        }    
+                                    }
+                                });    
+                            } 
+                        });      
+                    }
+
+    $('#submit').on('click', function(){
+        $('#chart_container').empty().append('<canvas id="trChart"></canvas>');
+        createGraphs();
+                
+    })
+
+    </script>
+
+</div>
+<!-- </div> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <scrip type="text/javascript" src="test.js"></script>
+    
+
+  </body>
+</html>
