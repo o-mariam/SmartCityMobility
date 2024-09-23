@@ -17,7 +17,7 @@ This project aims to create a comprehensive system for collecting, managing, and
 
 1. **Clone the repository**:
  
-   git clone https://github.com//o-mariam/web.git
+   git clone https://github.com//o-mariam/SmartCityMobility.git
    cd web
    
 ## License
@@ -25,6 +25,6 @@ This project aims to create a comprehensive system for collecting, managing, and
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ### Customization Notes:
-- Replace **`o-mariam`** and **`web`** with your GitHub username and the repository name.
+- Replace **`o-mariam`** and **`SmartCityMobility`** with your GitHub username and the repository name.
 - Add any additional instructions that are specific to your project (e.g., API keys, external services).
 - If the project includes specific dependencies or setup instructions (like setting up databases, using Docker, etc.), you can expand the **Installation** section.
