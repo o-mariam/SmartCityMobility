@@ -1,4 +1,5 @@
 Crowdsourced Spatiotemporal Data Collection and Analysis System
+
 This project focuses on developing a system to collect, manage, and analyze crowdsourced spatiotemporal data related to human mobility. Users can voluntarily contribute their location history data, allowing for both personal insights and city-level analysis.
 
 Key Features:
