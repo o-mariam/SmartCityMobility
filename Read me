@@ -1,12 +1,23 @@
-Crowdsourced Spatiotemporal Data Collection and Analysis System
-This project focuses on developing a system to collect, manage, and analyze crowdsourced spatiotemporal data related to human mobility. Users can voluntarily contribute their location history data, allowing for both personal insights and city-level analysis.
+# Crowdsourced Spatiotemporal Data Collection and Analysis System
 
-Key Features:
-User Contributions: Users share their location history (e.g., from Google Location History) to a common repository.
-Personal Insights: Users receive feedback on how environmentally friendly their mobility patterns are (e.g., walking, cycling).
-City Planning: Aggregated data helps city planners improve urban infrastructure like sidewalks and bike lanes.
-Emergency Response: Identifies population concentration areas to optimize emergency services deployment during disasters.
-This system is designed for the city of Patras, with two types of users:
+This project aims to create a comprehensive system for collecting, managing, and analyzing crowdsourced spatiotemporal data related to human mobility. Users voluntarily share their location history data, contributing to both personal insights and broader city-level analysis to improve urban planning and emergency response.
 
-Administrator: Manages population-level data and supports urban planning.
-User: Contributes data and receives mobility analysis.
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+- **User Contributions**: Users can upload their Google Location History data (in JSON or KMZ format) to contribute to the system.
+- **Environmental Insights**: Users receive feedback on the environmental friendliness of their mobility patterns, such as walking or cycling.
+- **Urban Planning**: Aggregated data from multiple users helps city planners improve infrastructure (e.g., bike lanes, pedestrian paths).
+- **Emergency Response Optimization**: Identifies areas of population density to assist in efficient deployment of emergency services during disasters.
+
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
