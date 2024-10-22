@@ -23,8 +23,3 @@ This project aims to create a comprehensive system for collecting, managing, and
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-
-### Customization Notes:
-- Replace **`o-mariam`** and **`SmartCityMobility`** with your GitHub username and the repository name.
-- Add any additional instructions that are specific to your project (e.g., API keys, external services).
-- If the project includes specific dependencies or setup instructions (like setting up databases, using Docker, etc.), you can expand the **Installation** section.
